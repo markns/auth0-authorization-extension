@@ -10,4 +10,5 @@ export default Joi.object().keys({
   permissions: Joi.array().items(Joi.object()),
   applications: Joi.array().items(Joi.object()),
   rules: Joi.array().items(Joi.object())
-});
+})
+  .label('Storage');

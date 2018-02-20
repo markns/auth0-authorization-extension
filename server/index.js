@@ -29,6 +29,25 @@ export default (cb) => {
   const hapiSwaggerPlugin = {
     register: HapiSwagger,
     options: {
+      info: {
+        title: 'Auth0 Authorization API'
+      },
+      schemes: [ 'https', 'https' ],
+      security: [
+        {
+          auth0_jwk: []
+        }
+      ],
+      securityDefinitions: {
+        auth0_jwk: {
+          'x-google-jwks_uri': 'https://gridarrow.auth0.com/.well-known/jwks.json',
+          type: 'oauth2',
+          'x-google-issuer': 'https://gridarrow.auth0.com/',
+          flow: 'implicit',
+          authorizationUrl: ''
+        }
+      },
+
       documentationPage: false,
       swaggerUI: false
     }

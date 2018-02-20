@@ -16,7 +16,8 @@ module.exports = () => ({
         allowUnknown: false
       },
       payload: schema
-    }
+    },
+    response: { schema: schema }
   },
   handler: (req, reply) => {
     const role = req.payload;

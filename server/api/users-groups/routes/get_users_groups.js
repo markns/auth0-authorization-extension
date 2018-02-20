@@ -1,6 +1,8 @@
 import Joi from 'joi';
 import _ from 'lodash';
 
+import schema from '../../groups/schemas/group';
+
 import { getGroupsExpanded } from '../../../lib/queries';
 
 module.exports = () => ({
@@ -17,7 +19,8 @@ module.exports = () => ({
       params: {
         id: Joi.string().required()
       }
-    }
+    },
+    response: { schema: Joi.array().items(schema).label('GroupList') }
   },
   handler: (req, reply) => {
     if (req.query.expand) {

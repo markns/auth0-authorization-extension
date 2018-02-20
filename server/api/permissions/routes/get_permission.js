@@ -1,4 +1,5 @@
 import Joi from 'joi';
+import schema from '../../permissions/schemas/permission';
 
 module.exports = () => ({
   method: 'GET',
@@ -14,7 +15,8 @@ module.exports = () => ({
       params: {
         id: Joi.string().guid().required()
       }
-    }
+    },
+    response: { schema: schema }
   },
   handler: (req, reply) =>
     req.storage.getPermission(req.params.id)

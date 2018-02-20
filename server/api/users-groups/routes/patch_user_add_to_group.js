@@ -16,6 +16,7 @@ module.exports = () => ({
         id: Joi.string().required()
       },
       payload: Joi.array().items(Joi.string().guid()).required().min(1)
+          .label('Guids')
     }
   },
   handler: (req, reply) => {

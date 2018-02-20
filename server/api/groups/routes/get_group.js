@@ -1,6 +1,7 @@
 import Joi from 'joi';
 
 import { getGroupExpanded } from '../../../lib/queries';
+import schema from '../schemas/group';
 
 module.exports = () => ({
   method: 'GET',
@@ -19,7 +20,8 @@ module.exports = () => ({
       params: {
         id: Joi.string().guid().required()
       }
-    }
+    },
+    response: { schema: schema }
   },
   handler: (req, reply) => {
     if (req.query.expand) {

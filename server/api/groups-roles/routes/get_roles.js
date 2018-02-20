@@ -1,4 +1,5 @@
 import Joi from 'joi';
+import schema from '../../roles/schemas/role';
 
 module.exports = (server) => ({
   method: 'GET',
@@ -17,7 +18,8 @@ module.exports = (server) => ({
       params: {
         id: Joi.string().guid().required()
       }
-    }
+    },
+    response: { schema: Joi.array().items(schema).label('RoleList') }
   },
   handler: (req, reply) =>
     req.storage.getGroup(req.params.id)

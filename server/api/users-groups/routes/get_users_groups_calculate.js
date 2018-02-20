@@ -1,5 +1,6 @@
 import Joi from 'joi';
 import _ from 'lodash';
+import schema from '../../groups/schemas/group';
 
 import { getParentGroups } from '../../../lib/queries';
 
@@ -17,7 +18,8 @@ module.exports = () => ({
       params: {
         id: Joi.string().required()
       }
-    }
+    },
+    response: { schema: Joi.array().items(schema).label('GroupList') }
   },
   handler: (req, reply) =>
     req.storage.getGroups()

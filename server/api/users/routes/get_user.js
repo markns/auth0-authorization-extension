@@ -1,4 +1,5 @@
 import Joi from 'joi';
+import schema from '../../users/schemas/user';
 
 module.exports = (server) => ({
   method: 'GET',
@@ -16,7 +17,8 @@ module.exports = (server) => ({
     },
     pre: [
       server.handlers.managementClient
-    ]
+    ],
+    response: { schema: schema }
   },
   handler: (req, reply) =>
     req.pre.auth0.users.get({ id: req.params.id })

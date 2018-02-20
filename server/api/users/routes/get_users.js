@@ -1,4 +1,5 @@
 import Joi from 'joi';
+import schema from '../../users/schemas/user';
 
 module.exports = (server) => ({
   method: 'GET',
@@ -17,9 +18,11 @@ module.exports = (server) => ({
         page: Joi.number().integer().min(0).default(0)
       }
     },
+    // response: { schema: Joi.array().items(schema).label('UserList') },
     pre: [
       server.handlers.managementClient
-    ]
+    ],
+    response: { schema: Joi.array().items(schema).label('UserList') }
   },
   handler: (req, reply) => {
     const page = (req.query.page - 1 < 0) ? 0 : req.query.page - 1;

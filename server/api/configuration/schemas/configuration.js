@@ -10,4 +10,6 @@ export default Joi.object().keys({
   groupsPassthrough: Joi.boolean(),
   rolesPassthrough: Joi.boolean(),
   permissionsPassthrough: Joi.boolean()
-});
+})
+  .label('Configuration');
+

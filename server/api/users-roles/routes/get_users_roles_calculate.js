@@ -1,4 +1,5 @@
 import Joi from 'joi';
+import schema from '../../roles/schemas/role';
 
 import { getRolesForUser } from '../../../lib/queries';
 
@@ -16,7 +17,8 @@ module.exports = () => ({
       params: {
         id: Joi.string().required()
       }
-    }
+    },
+    response: { schema: Joi.array().items(schema).label('RoleList') }
   },
   handler: (req, reply) =>
     getRolesForUser(req.storage, req.params.id)

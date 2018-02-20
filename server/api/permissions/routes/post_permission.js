@@ -1,3 +1,4 @@
+import Joi from 'joi';
 import schema from '../schemas/permission';
 
 module.exports = () => ({
@@ -15,7 +16,8 @@ module.exports = () => ({
         allowUnknown: false
       },
       payload: schema
-    }
+    },
+    response: { schema: schema }
   },
   handler: (req, reply) => {
     const permission = req.payload;

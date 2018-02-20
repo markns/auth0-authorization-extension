@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import Joi from 'joi';
+import schema from '../../permissions/schemas/permission';
 
 module.exports = () => ({
   method: 'GET',
@@ -16,7 +17,8 @@ module.exports = () => ({
         q: Joi.string().max(1000).allow('').default(''),
         field: Joi.string().max(1000).allow('').default('')
       }
-    }
+    },
+    response: { schema: Joi.array().items(schema).label('PermissionList') }
   },
   handler: (req, reply) =>
     req.storage.getPermissions()

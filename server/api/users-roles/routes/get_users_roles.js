@@ -1,5 +1,6 @@
 import Joi from 'joi';
 import _ from 'lodash';
+import schema from '../../roles/schemas/role';
 
 module.exports = () => ({
   method: 'GET',
@@ -15,7 +16,8 @@ module.exports = () => ({
       params: {
         id: Joi.string().required()
       }
-    }
+    },
+    response: { schema: Joi.array().items(schema).label('RoleList') }
   },
   handler: (req, reply) =>
     req.storage.getRoles()

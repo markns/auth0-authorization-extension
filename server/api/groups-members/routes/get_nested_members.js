@@ -3,6 +3,7 @@ import Joi from 'joi';
 
 import { getUsersById } from '../../../lib/users';
 import { getChildGroups, getMembers } from '../../../lib/queries';
+import schema from '../../users/schemas/user';
 
 module.exports = (server) => ({
   method: 'GET',
@@ -25,7 +26,8 @@ module.exports = (server) => ({
         per_page: Joi.number().integer().min(1).max(25).default(25), // eslint-disable-line newline-per-chained-call
         page: Joi.number().integer().min(0).default(0)
       }
-    }
+    },
+    response: { schema: Joi.array().items(schema).label('UserList') }
   },
   handler: (req, reply) =>
     req.storage.getGroups()
