@@ -44,7 +44,7 @@ export default (cb) => {
           type: 'oauth2',
           'x-google-issuer': 'https://gridarrow.auth0.com/',
           flow: 'implicit',
-          authorizationUrl: ''
+          authorizationUrl: 'http://dummy'
         }
       },
 
