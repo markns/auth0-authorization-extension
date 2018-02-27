@@ -18,7 +18,6 @@ module.exports = (server) => ({
         page: Joi.number().integer().min(0).default(0)
       }
     },
-    // response: { schema: Joi.array().items(schema).label('UserList') },
     pre: [
       server.handlers.managementClient
     ],
